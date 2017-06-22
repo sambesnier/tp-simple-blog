@@ -22,6 +22,9 @@
                     </div>
                 </div>
                 <div class="row">
+                    <?= $article['date_article'] ?>
+                </div>
+                <div class="row">
                     <div>
                         <p><?= $article['hat'] ?></p>
                         <a href="/?controller=show&id=<?= $article['article_id'] ?>">Voir plus</a>
