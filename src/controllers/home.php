@@ -10,7 +10,7 @@
 renderView(
     'home',
     [
-        'pageTitle' => 'Bienvenue sur mon site',
+        'pageTitle' => 'Bienvenue sur mon blog',
         'now' => date('l jS \of F Y h:i:s A')
     ]
 );
