@@ -15,6 +15,42 @@ $commentaries = [];
 
 $connection = getPDO();
 
+// Test of form submission
+$isSubmitted = filter_has_var(INPUT_POST, "submit");
+
+if (! empty($isSubmitted)) {
+    $email = filter_input(
+        INPUT_POST,
+        'email',
+        FILTER_SANITIZE_EMAIL);
+    // Get data
+    $commentary = filter_input(
+        INPUT_POST,
+        'commentary',
+        FILTER_SANITIZE_STRING);
+
+    if (empty($email)) {
+        $errors[] = "Veuillez saisir un email";
+    }
+    if (empty($commentary)) {
+        $errors[] = "Veuillez saisir un commentaire";
+    }
+    if (empty($errors)) {
+        try {
+            $sql = "INSERT INTO commentaries (email, commentary, article_id) VALUES (:email, :commentary, :article_id)";
+            $statement = $connection->prepare($sql);
+            $statement->execute([
+                'email' => $email,
+                'commentary' => $commentary,
+                'article_id' => $id
+            ]);
+            $_SESSION['flash'] = "Votre commentaire a été ajouté";
+        } catch (PDOException $e) {
+            $errors[] = "Impossible d'ajouter votre commentaire";
+        }
+    }
+}
+
 // Get articles
 try {
     $sql = "SELECT title, hat, img, content, articles.article_id, date_article FROM articles WHERE article_id=$id";
@@ -42,10 +78,9 @@ try {
 try {
     $sql = "SELECT email, commentary, date_commentary
             FROM commentaries
-            INNER JOIN
-            articles ON articles.article_id = commentaries.article_id";
+            WHERE article_id = $id";
     $rs = $connection->query($sql);
-    $categories = $rs->fetchAll(PDO::FETCH_ASSOC);
+    $commentaries = $rs->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $errors[] = "Impossible d'afficher les commentaires";
 }
@@ -57,6 +92,7 @@ renderView(
         'pageTitle' => $article['title'],
         'article' => $article ?? [],
         'categories' => $categories ?? [],
-        'commentaries' => $commentaries ?? []
+        'commentaries' => $commentaries ?? [],
+        'errors' => $errors
     ]
 );
