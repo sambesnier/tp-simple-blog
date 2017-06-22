@@ -1,10 +1,10 @@
 {
-  "name": "projet-web",
-  "homepage": "https://github.com/sambesnier/php-projet-web",
+  "name": "tp-simple-blog",
+  "homepage": "https://github.com/sambesnier/tp-simple-blog",
   "authors": [
     "Samuel Besnier <sbesnier1901@gmail.com>"
   ],
-  "description": "Un projet pour une première approche du développement web moderne",
+  "description": "Creation of a simple blog",
   "main": "",
   "license": "MIT",
   "private": true,

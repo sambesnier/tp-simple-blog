@@ -17,6 +17,7 @@
     <!-- Load Bootstrap -->
     <link rel="stylesheet" href="dependancies/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="dependancies/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body class="container-fluid">
 
@@ -43,6 +44,7 @@
 <!-- Load bootstrap's javascript -->
 <script src="dependancies/jquery/dist/jquery.min.js"></script>
 <script src="dependancies/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="public/js/blog.js"></script>
 
 </body>
 </html>
