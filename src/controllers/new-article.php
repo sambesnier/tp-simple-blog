@@ -25,7 +25,7 @@ if (! empty($isSubmitted)) {
     $content = filter_input(
         INPUT_POST,
         'content',
-        FILTER_SANITIZE_EMAIL);
+        FILTER_SANITIZE_STRING);
     $categoriesFromForm = filter_input(
         INPUT_POST,
         'categories',

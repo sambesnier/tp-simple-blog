@@ -6,11 +6,17 @@
  * Time: 09:58
  */
 
+$connection = getPDO();
+
+$sql = "SELECT title, hat, content, img, articles.article_id FROM articles";
+$rs = $connection->query($sql);
+$articles = $rs->fetchAll(PDO::FETCH_ASSOC);
+
 // Call renderView function
 renderView(
     'home',
     [
         'pageTitle' => 'Bienvenue sur mon blog',
-        'now' => date('l jS \of F Y h:i:s A')
+        'articles' => $articles ?? []
     ]
 );
