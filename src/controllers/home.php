@@ -8,7 +8,7 @@
 
 $connection = getPDO();
 
-$sql = "SELECT title, hat, content, img, articles.article_id FROM articles";
+$sql = "SELECT title, hat, img, articles.article_id FROM articles";
 $rs = $connection->query($sql);
 $articles = $rs->fetchAll(PDO::FETCH_ASSOC);
 
